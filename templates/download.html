@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Files by QR</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Download Shared File{{ 's' if is_multiple else '' }}</h2>
+    <p>
+      <strong class="filename" title="{{ file_name }}">{{ file_name }}</strong>
+    </p>
+    <p><strong>Size:</strong> {{ file_size }}</p>
+    <p><a href="/download"><button>Download{{ ' All' if is_multiple else '' }}</button></a></p>
+  </div>
+</body>
+</html>

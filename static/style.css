@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f3f4f6;
+  margin: 0;
+  padding: 20px;
+  color: #111827;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 14px;
+  margin: 10px 0;
+  word-break: break-word;
+}
+
+button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+}
+
+/* ✅ Truncate long file names */
+.filename {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
