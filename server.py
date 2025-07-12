@@ -73,7 +73,10 @@ def download():
     else:
         return abort(400)
 
-@app.route("/favicon.ico")
+@app.route('/favicon.ico')
+def favicon():
+    return send_file(os.path.join("static", "favicon.ico"))
+
 def favicon():
     return "", 204
 
