@@ -5,25 +5,48 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f3f4f6;
   margin: 0;
-  padding: 20px;
-  color: #111827;
+  padding: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: #f3f4f6;
+  color: #111;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
+  text-align: center;
 }
 
+/* ✅ App Header: logo + title side-by-side */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.app-logo {
+  width: 36px;
+  height: 36px;
+}
+
+.app-title {
+  font-size: 25px;
+  font-weight: 750;
+  color: #111827;
+}
+
+/* ✅ Download container */
 .container {
   background: white;
   padding: 24px;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  text-align: center;
   width: 100%;
   max-width: 400px;
+  margin-bottom: 10px;
 }
 
 h2 {
@@ -38,6 +61,7 @@ p {
   word-break: break-word;
 }
 
+/* ✅ Button */
 button {
   background-color: #2563eb;
   color: white;
@@ -56,6 +80,26 @@ button:hover {
   background-color: #1d4ed8;
 }
 
+/* ✅ Truncate long file names */
+.filename {
+  display: inline-block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+}
+
+/* ✅ LAN Info Message */
+.lan-notice {
+  font-size: 12px;
+  color: #b91c1c;
+  text-align: center;
+  margin-top: 10px;
+  max-width: 90%;
+}
+
+/* ✅ Responsive tweaks */
 @media (max-width: 480px) {
   .container {
     padding: 20px 16px;
@@ -70,14 +114,13 @@ button:hover {
     font-size: 13px;
     padding: 10px 16px;
   }
-}
 
-/* ✅ Truncate long file names */
-.filename {
-  display: inline-block;
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: bottom;
+  .app-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .app-title {
+    font-size: 18px;
+  }
 }
