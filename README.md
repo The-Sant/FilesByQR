@@ -19,7 +19,11 @@ Installation:
 --------------
 1. Run FilesByQRInstaller.exe (generated via Inno Setup)
 2. The app installs to Program Files and adds context menu integration.
-3. After installation, right-click any file/folder → Share with QR
+3. If prompted, allow network access (especially for private or local networks) when launching the app. No internet access is required or used.
+4. After installation, right-click any file/folder → Share with QR
+
+**Note: To allow file sharing over your local network, please ensure that FilesByQR.exe is allowed through your firewall or antivirus.
+This app runs a secure local server on your device and may be blocked by some security software by default.**
 
 Uninstallation:
 ----------------
