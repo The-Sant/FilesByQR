@@ -1,0 +1,5 @@
+pyinstaller --noconsole --onedir --icon=assets\app_icon.ico `
+--add-data "templates;templates" `
+--add-data "static;static" `
+--add-data "assets;assets" `
+main.py -n FilesByQR
