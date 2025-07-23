@@ -5,7 +5,7 @@
 
 [Setup]
 AppName=Files By QR
-AppVersion=1.1
+AppVersion=1.2
 DefaultDirName={autopf}\Files By QR
 DefaultGroupName=Files By QR
 OutputDir=dist_installer
@@ -45,7 +45,7 @@ Root: HKCR; Subkey: "AllFilesystemObjects\shell\FilesByQR\command"; ValueType: s
 
 [Run]
 ; ✅ Launch after install
-;Filename: "{app}\FilesByQR.exe"; Description: "Launch FilesByQR"; Flags: nowait postinstall skipifsilent
+; Filename: "{app}\FilesByQR.exe"; Description: "Launch FilesByQR"; Flags: nowait postinstall skipifsilent
 Filename: "notepad.exe"; Parameters: "{app}\_internal\assets\ReadMe.txt"; \
 Description: "View Readme File"; Flags: postinstall skipifsilent nowait
 
