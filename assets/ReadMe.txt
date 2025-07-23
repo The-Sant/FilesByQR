@@ -1,45 +1,55 @@
-readme_content = """
-FilesByQR - Instant File Sharing via QR Code
+FilesByQR v1.2 - Instant File Sharing via QR Code  
+Created by: Santanu Mondal  
 
 Overview:
 -----------
-FilesByQR is a lightweight Windows utility that lets you share files and folders over a local network by generating a QR code. Simply right-click any file, choose "Share with QR", and scan the code from your phone or another device on the same Wi-Fi/LAN to download the file instantly.
+FilesByQR is a lightweight Windows utility that lets you instantly share or receive files over your local network using QR codes.  
+You can:
+• Right-click any file(s) and select **"Share with QR"** to share instantly  
+• Open the app directly to access additional options like **"Send Files"** and **"Receive Files"**  
+• Use your phone to upload files to your PC — all through a secure local connection  
 
 Features:
 ----------
-- Right-click integration: "Share with QR" in context menu
-- Automatic local server with QR generation
-- Supports files and folders (with optional zipping)
-- Password protection and auto-expiry (optional)
-- Drag-and-drop support when opened manually
-- Clean uninstall: removes all temp files and registry entries
-- No internet required — works fully offline in LAN
+- ✅ Context menu integration: "Share with QR"
+- ✅ Lightning-fast local sharing:
+    • Single file → shared directly  
+    • Multiple files → zipped automatically for easy download  
+- ✅ Dual-mode launcher when opened directly:
+    • **Send Files**: Select files and share via QR  
+    • **Receive Files**: Let other devices upload files directly to your PC  
+- ✅ Built-in QR code display and temporary web server
+- ✅ Clean, responsive UI with zipping progress and status
+- ✅ Local-only sharing — no internet required
+- ✅ Automatic cleanup of temporary ZIPs after use
+- ✅ Supports long filenames, spaces, and Unicode characters
+- ✅ QR auto-expires after countdown for security
 
 Installation:
 --------------
-1. Run FilesByQRInstaller.exe
-2. The app installs to Program Files and adds context menu integration.
-3. If prompted, allow network access (especially for private or local networks) when launching the app. No internet access is required or used.
-4. After installation, right-click any file/folder → Share with QR
-
-**Note: To allow file sharing over your local network, please ensure that FilesByQR.exe is allowed through your firewall or antivirus.
-This app runs a secure local server on your device and may be blocked by some security software by default.**
+1. Run `FilesByQRInstaller.exe`.
+2. App installs to **Program Files** and integrates with the right-click menu.
+3. On first use, allow LAN access in firewall prompt (required for sharing).
+4. Right-click any file or group of files → **Share with QR**
 
 Uninstallation:
 ----------------
-Use the Windows "Apps & Features" page or Start Menu shortcut to uninstall.
-All registry entries and app data will be automatically removed.
+Use the Start Menu or Windows "Apps & Features" to uninstall.  
+All registry entries, context menu items, and temporary data will be removed.
 
 System Requirements:
 ---------------------
 - Windows 10 or 11 (64-bit)
-- Python is not required after installation (built as EXE)
-- Works best on devices connected to the same LAN/Wi-Fi
+- No Python required — packaged as standalone EXE
+- Works across any device connected to the same Wi-Fi or LAN
 
-Created by: Santanu Mondal
-"""
+Notes:
+-------
+- Ensure firewall or antivirus is not blocking local access on port 5000.
+- This app uses a temporary local Flask server — data never leaves your network.
+- Works best when mobile and PC are on the same subnet (Wi-Fi/router).
 
-with open("/mnt/data/readme.txt", "w", encoding="utf-8") as f:
-    f.write(readme_content.strip())
-
-"/mnt/data/readme.txt"
+Support:
+----------
+For issues, feedback, or improvements, please contact the developer:  
+**Santanu Mondal**

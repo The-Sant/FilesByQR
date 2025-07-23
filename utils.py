@@ -1,24 +1,34 @@
-import zipfile, os
+import zipfile
+import os
+import sys
+import random
+from datetime import datetime
+import tempfile
 
-def zip_files_if_needed(files):
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+def zip_files_if_needed(files, progress_callback=None):
     if len(files) == 1:
-        return files[0], False  # ✅ Single file
+        return files[0], False
 
-    total_size = sum(os.path.getsize(f) for f in files)
+    temp_dir = os.path.join(tempfile.gettempdir(), "FilesByQR")
+    os.makedirs(temp_dir, exist_ok=True)
 
-    if total_size >= 2 * 1024 * 1024 * 1024:  # 2 GB
-        # ✅ Zip to disk
-        zip_path = "temp/shared.zip"
-        os.makedirs("temp", exist_ok=True)
+    short_time = datetime.now().strftime("%H%M")
+    suffix = random.randint(10, 99)
+    zip_name = f"shared_{short_time}_{suffix}.zip"
+    zip_path = os.path.join(temp_dir, zip_name)
 
-        if os.path.exists(zip_path):
-            os.remove(zip_path)
+    with zipfile.ZipFile(zip_path, 'w') as zf:
+        total = len(files)
+        for i, file in enumerate(files, start=1):
+            zf.write(file, arcname=os.path.basename(file))
+            if progress_callback:
+                progress_callback(i, total, file)
 
-        with zipfile.ZipFile(zip_path, 'w') as zf:
-            for file in files:
-                zf.write(file, arcname=os.path.basename(file))
-
-        return zip_path, True  # return static zip
-
-    else:
-        return list(files), False  # ✅ return as list for in-memory zip
+    return zip_path, True

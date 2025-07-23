@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Files by QR - Upload</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-header">
+    <img src="/static/favicon.ico" alt="QR" class="app-logo">
+    <div class="app-title">Files by QR</div>
+  </div>
+
+  <div class="container">
+    <h2>Upload File(s)</h2>
+
+    <form id="upload-form">
+      <input id="file-input" type="file" name="file" multiple required />
+      <div class="file-count" id="file-count" style="display: none;"></div>
+      <button type="submit">Upload</button>
+    </form>
+
+    <div class="progress-container" id="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <p id="status-message"></p>
+  </div>
+
+  <div class="lan-notice">
+    This transfer is secure within your LAN only.<br>
+    HTTPS is unnecessary unless routing publicly.
+  </div>
+
+  <script>
+    const form = document.getElementById('upload-form');
+    const fileInput = document.getElementById('file-input');
+    const fileCount = document.getElementById('file-count');
+    const uploadBtn = form.querySelector('button');
+    const progressContainer = document.getElementById('progress-container');
+    const progressBar = document.getElementById('progress-bar');
+    const statusMsg = document.getElementById('status-message');
+
+    // Show file count when file selected
+    fileInput.addEventListener('change', () => {
+      const count = fileInput.files.length;
+      if (count > 0) {
+        fileCount.style.display = 'block';
+        fileCount.textContent = `${count} file${count > 1 ? 's' : ''} selected`;
+      }
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      if (fileInput.files.length === 0) return;
+
+      const formData = new FormData(form);
+      statusMsg.style.color = '#2563eb';
+      statusMsg.textContent = 'Uploading...';
+      uploadBtn.style.display = 'none';
+      fileInput.style.display = 'none';
+      fileCount.style.display = 'block';
+      progressContainer.style.display = 'block';
+      progressBar.style.width = '0%';
+
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/upload', true);
+
+      xhr.upload.onprogress = function (e) {
+        if (e.lengthComputable) {
+          const percent = (e.loaded / e.total) * 100;
+          progressBar.style.width = percent.toFixed(1) + '%';
+        }
+      };
+
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          progressBar.style.width = '100%';
+          statusMsg.style.color = 'green';
+          statusMsg.textContent = '✅ Upload complete. You can close this page.';
+        } else {
+          statusMsg.style.color = 'red';
+          statusMsg.textContent = '❌ Upload failed. Please try again.';
+        }
+      };
+
+      xhr.onerror = function () {
+        statusMsg.style.color = 'red';
+        statusMsg.textContent = '❌ Upload error.';
+      };
+
+      xhr.send(formData);
+    });
+  </script>
+</body>
+</html>
